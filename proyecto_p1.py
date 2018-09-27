@@ -41,20 +41,16 @@ periodo =  pd.DataFrame(data['Periodo'])
 
 
  #%% conteo de valores únicos de cada columa del dataframe original
-plantel_c=pd.value_counts(data.Plantel) 
-modelo_c= pd.value_counts(data['Modelo educativo'])
-clave_c= pd.value_counts(data['Clave de la carrera'])
-carrera= pd.value_counts(data['Carrera Profesional Tecnico -Bachiller'])
-matricula_C = pd.value_counts(data['Matricula'])
-periodo_c = pd.value_counts(data['Periodo'])
+
 
 #%% 
 alumnos = pd.DataFrame()
 alumnos = carrera.join(matricula)
 #%%
 
-        
-
+n_carreras = len(matricula)
+plt.bar(np.arange(n_carreras),matricula.iloc[:,0])
+plt.show()
     
     
 
