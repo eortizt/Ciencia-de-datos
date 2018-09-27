@@ -22,17 +22,18 @@ data = data.iloc[:,0:7]
 
 #%%repote de calidad de los datos
 dqr= mylib.dqr(data)
+
 #%%eliminación de datos nulos
 data=data.dropna()
 #%%lEstadísticas de los datos
 
-plantel = (data['Plantel'])
-modelo = data['Modelo educativo']
-clave_c= data['Clave de la carrera']
-carrea = data['Carrera Profesional Tecnico -Bachiller']
-matricula = data['Matricula']
-periodo = data['Periodo']
-count_values(plantel,'Guadalajara II')
+plantel_c= pd.DataFrame(data['Plantel'])
+modelo_c =  pd.DataFrame(data['Modelo educativo'])
+clave_c=  pd.DataFrame(data['Clave de la carrera'])
+carrera =  pd.DataFrame(data['Carrera Profesional Tecnico -Bachiller'])
+matricula = pd.DataFrame(data['Matricula'])
+periodo =  pd.DataFrame(data['Periodo'])
+
 
 
 
@@ -43,13 +44,16 @@ count_values(plantel,'Guadalajara II')
 plantel_c=pd.value_counts(data.Plantel) 
 modelo_c= pd.value_counts(data['Modelo educativo'])
 clave_c= pd.value_counts(data['Clave de la carrera'])
-carrera_c= pd.value_counts(data['Carrera Profesional Tecnico -Bachiller'])
+carrera= pd.value_counts(data['Carrera Profesional Tecnico -Bachiller'])
 matricula_C = pd.value_counts(data['Matricula'])
 periodo_c = pd.value_counts(data['Periodo'])
 
+#%% 
+alumnos = pd.DataFrame()
+alumnos = carrera.join(matricula)
+#%%
 
-modelo_C= pd.value_counts(data.Plantel)
-
+        
 
     
     
