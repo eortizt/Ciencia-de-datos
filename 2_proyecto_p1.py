@@ -83,4 +83,33 @@ del tmp #elimina tmp para no tener variables extras
 
 #%% Aplicacion de indices de similitud
 D1 = sc.pdist(data_dummy,'matching')
-D1 = sc.squareform(D1) 
+D1 = sc.squareform(D1)
+
+#%% Clustering
+from sklearn.cluster import KMeans
+#%% Grafica de Codo
+n_grupos=75
+inercias = np.zeros(n_grupos)  
+for k in np.arange(n_grupos)+1:
+    model = KMeans(n_clusters=k,init='random')
+    model = model.fit(data_dummy)
+    inercias[k-1] = model.inertia_
+
+plt.plot(np.arange(1,n_grupos+1),inercias)
+plt.xlabel('Numero de grupos')
+plt.ylabel('Inercia Global')
+plt.show()
+
+#%% Perfiles de alumnos, suponiendo que hay 5 diferentes tipos
+model = KMeans(n_clusters=5,init='random')
+model = model.fit(data_dummy)
+centroides = model.cluster_centers_
+plt.plot(centroides[:,0:53].transpose())
+plt.title('Perfiles')
+
+#%%
+Ypredict = model.predict(data_dummy)
+#%%
+Perfiles = pd.DataFrame(columns=('Perfil','Matricula'))
+Perfiles.Perfil = Ypredict
+Perfiles.Matricula = data_dummy.index
