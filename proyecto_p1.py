@@ -47,11 +47,29 @@ periodo =  pd.DataFrame(data['Periodo'])
 alumnos = pd.DataFrame()
 alumnos = carrera.join(matricula)
 #%%
-
+plt.figure(figsize=(10,15))
 n_carreras = len(matricula)
+p_names = pd.DataFrame(data.Plantel.unique())
 plt.bar(np.arange(n_carreras),matricula.iloc[:,0])
 plt.show()
-    
+
+
+#%%
+nombres_carreras = pd.DataFrame(data.groupby(['Carrera Profesional Tecnico -Bachiller'])['Matricula'].sum())
+
+
+#%%
+plt.figure(figsize=(10,15))
+
+#carreras_array= np.array(len())
+#sum_alumnos = pd.DataFrame(pd.value_counts(data['Carrera Profesional Tecnico -Bachiller']))
+plt.plot(nombres_carreras)
+
+
+
+
+#%%
+
     
 
 
